@@ -1,12 +1,14 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { AuthProvider } from '../context/AuthContext';
 
-// Layout raiz: cada grupo ((auth) e (app)) desenha o próprio header.
+// Layout raiz: o AuthProvider envolve o app inteiro,
+// e cada grupo ((auth) e (app)) desenha o próprio header.
 export default function RootLayout() {
   return (
-    <>
+    <AuthProvider>
       <StatusBar style="dark" />
       <Stack screenOptions={{ headerShown: false }} />
-    </>
+    </AuthProvider>
   );
 }
