@@ -22,6 +22,7 @@ export default function AppLayout() {
       }}
     >
       <Stack.Screen name="index" options={{ title: 'Livros' }} />
+      <Stack.Screen name="livro/[id]" options={{ title: '' }} />
     </Stack>
   );
 }
