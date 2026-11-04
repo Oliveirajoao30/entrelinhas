@@ -1,18 +1,19 @@
 {
   "expo": {
-    "name": "Biblioteca",
+    "name": "Entrelinhas",
     "slug": "app-biblioteca",
     "version": "1.0.0",
-    "scheme": "appbiblioteca",
+    "scheme": "entrelinhas",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0B0C10",
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#0B0C10",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -20,10 +21,12 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "name": "Entrelinhas"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-image"
     ]
   }
 }
