@@ -8,12 +8,31 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import { useRouter } from 'expo-router';
 import { theme } from '../../constants/theme';
+import { useAuth } from '../../context/AuthContext';
+
+// Credencial fixa da atividade (não há backend).
+const USUARIO_VALIDO = 'aluno';
+const SENHA_VALIDA = '123';
 
 // Rota /login — o grupo (auth) não aparece na URL.
 export default function Login() {
+  const router = useRouter();
+  const { entrar } = useAuth();
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
+  const [erro, setErro] = useState('');
+
+  function handleEntrar() {
+    if (usuario.trim() === USUARIO_VALIDO && senha === SENHA_VALIDA) {
+      entrar(usuario.trim());
+      // replace (e não push): o botão voltar não retorna ao login.
+      router.replace('/');
+    } else {
+      setErro('Usuário ou senha inválidos.');
+    }
+  }
 
   return (
     <KeyboardAvoidingView
@@ -31,7 +50,10 @@ export default function Login() {
           autoCapitalize="none"
           autoCorrect={false}
           value={usuario}
-          onChangeText={setUsuario}
+          onChangeText={(texto) => {
+            setUsuario(texto);
+            setErro('');
+          }}
         />
         <TextInput
           style={styles.input}
@@ -39,11 +61,18 @@ export default function Login() {
           placeholderTextColor={theme.colors.muted}
           secureTextEntry
           value={senha}
-          onChangeText={setSenha}
+          onChangeText={(texto) => {
+            setSenha(texto);
+            setErro('');
+          }}
+          onSubmitEditing={handleEntrar}
         />
+
+        {erro ? <Text style={styles.erro}>{erro}</Text> : null}
 
         <Pressable
           style={({ pressed }) => [styles.botao, pressed && styles.pressionado]}
+          onPress={handleEntrar}
         >
           <Text style={styles.botaoTexto}>Entrar</Text>
         </Pressable>
@@ -81,6 +110,10 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     fontSize: theme.fonts.body,
     color: theme.colors.text,
+  },
+  erro: {
+    color: theme.colors.danger,
+    fontSize: theme.fonts.small,
   },
   botao: {
     backgroundColor: theme.colors.primary,
