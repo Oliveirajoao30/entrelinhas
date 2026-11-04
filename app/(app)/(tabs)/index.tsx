@@ -1,10 +1,10 @@
 import { useRouter } from 'expo-router';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-import { SeloDisponivel } from '../../components/SeloDisponivel';
-import { theme } from '../../constants/theme';
-import { livros } from '../../data/livros';
+import { SeloDisponivel } from '../../../components/SeloDisponivel';
+import { theme } from '../../../constants/theme';
+import { livros } from '../../../data/livros';
 
-// Rota / — Home com a lista de livros.
+// Rota / â€” Home com a lista de livros.
 export default function Home() {
   const router = useRouter();
 
@@ -18,7 +18,7 @@ export default function Home() {
       }
       renderItem={({ item }) => (
         <Pressable
-          // push: na lista → detalhe, voltar faz sentido.
+          // push: na lista â†’ detalhe, voltar faz sentido.
           onPress={() => router.push(`/livro/${item.id}`)}
           style={({ pressed }) => [styles.card, pressed && styles.pressionado]}
         >

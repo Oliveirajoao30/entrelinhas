@@ -21,7 +21,8 @@ export default function AppLayout() {
         contentStyle: { backgroundColor: theme.colors.background },
       }}
     >
-      <Stack.Screen name="index" options={{ title: 'Livros' }} />
+      {/* As abas desenham o próprio header */}
+      <Stack.Screen name="(tabs)" options={{ headerShown: false, title: 'Livros' }} />
       <Stack.Screen name="livro/[id]" options={{ title: '' }} />
     </Stack>
   );
